@@ -3,7 +3,7 @@ const {isEmail} = require('validator')
 const bcrypt = require('bcrypt')
 
 
-const userSchema = new mongoose.Schema({
+const creatorSchema = new mongoose.Schema({
     username:{
         type: String,
         required: [true,'Please enter a name']
@@ -15,14 +15,19 @@ const userSchema = new mongoose.Schema({
         lowercase : true,
         validate : [isEmail, 'Please enter a valid email']
     },
-    usernumber:{
-        type: Number,
-        required: [true, 'Please enter your phone no'], 
-        unique: [true, 'Phone number is already registered']
+    userplatformActive: {
+        type: String,
+        enum: ['youtube', 'meta'],
+        default: 'youtube',
     },
-    userage:{
-        type: Number,
-        required: [true,'Please enter your age']
+    userchannelid:{
+        type: String,
+        required: [true,'Please enter your handle id'],
+        unique: [true, 'This handle is already registered']
+    },
+    userchannelname:{
+        type: String,
+        required: [true,'Please enter your channel name']
     },
     usermetamaskid:{
         type: String,
@@ -46,29 +51,29 @@ const userSchema = new mongoose.Schema({
     },
 });
 
-userSchema.pre('save', async function(next){
+creatorSchema.pre('save', async function(next){
     const salt = await bcrypt.genSalt();
     this.password = await bcrypt.hash(this.password, salt);
     next();
 })
 
-userSchema.post('save', function(doc, next) {
+creatorSchema.post('save', function(doc, next) {
     console.log('new user was created & saved', doc);
     next();
 })
 
-userSchema.statics.login = async function(email, password){
-    const user = await thisfindOne({email});
-    if(user){
-       const auth = await bcrypt.compare(password, user.password)
+creatorSchema.statics.login = async function(email, password){
+    const creator = await thisfindOne({email});
+    if(creator){
+       const auth = await bcrypt.compare(password, creator.password)
        if(auth){
-            return user;
+            return creator;
        }
        throw Error('Incorrect Password')
     }
     throw Error('Incorrect email')
 }
 
-const User = mongoose.model('User', userSchema)
+const Creator = mongoose.model('Creator', creatorSchema)
 
-module.exports = User; 
+module.exports = Creator; 
