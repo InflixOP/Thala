@@ -1,30 +1,29 @@
-const mongoose = require('mongoose')
-const {isEmail} = require('validator')
-const bcrypt = require('bcrypt')
-
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+const { isEmail } = require('validator');
 
 const userSchema = new mongoose.Schema({
-    username:{
+    username: {
         type: String,
-        required: [true,'Please enter a name']
+        required: [true, 'Please enter a name']
     },
-    useremail:{
+    useremail: {
         type: String,
         required: [true, 'Please enter an email'],
         unique: true,
-        lowercase : true,
-        validate : [isEmail, 'Please enter a valid email']
+        lowercase: true,
+        validate: [isEmail, 'Please enter a valid email']
     },
-    usernumber:{
+    usernumber: {
         type: Number,
-        required: [true, 'Please enter your phone no'], 
+        required: [true, 'Please enter your phone no'],
         unique: [true, 'Phone number is already registered']
     },
-    userage:{
+    userage: {
         type: Number,
-        required: [true,'Please enter your age']
+        required: [true, 'Please enter your age']
     },
-    usermetamaskid:{
+    usermetamaskid: {
         type: String,
         required: [true, 'Please enter your metamaskid'],
         unique: [true, 'This wallet is already registered']
@@ -33,42 +32,32 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         minlength: 8,
-        validate: {
-          validator: function (value) {
-            return value === this.confirmPassword;
-          },
-          message: 'Passwords do not match',
-        },
-      },
-    userconfirmPassword: {
-        type: String,
-        required: true
     },
 });
 
-userSchema.pre('save', async function(next){
+userSchema.pre('save', async function (next) {
     const salt = await bcrypt.genSalt();
-    this.password = await bcrypt.hash(this.password, salt);
+    this.userpassword = await bcrypt.hash(this.userpassword, salt);
     next();
-})
+});
 
-userSchema.post('save', function(doc, next) {
-    console.log('new user was created & saved', doc);
+userSchema.post('save', function (doc, next) {
+    console.log('New user was created & saved', doc);
     next();
-})
+});
 
-userSchema.statics.login = async function(email, password){
-    const user = await thisfindOne({email});
-    if(user){
-       const auth = await bcrypt.compare(password, user.password)
-       if(auth){
+userSchema.statics.userlogin = async function (useremail, userpassword) {
+    const user = await this.findOne({ useremail });
+    if (user) {
+        const auth = await bcrypt.compare(userpassword, user.userpassword);
+        if (auth) {
             return user;
-       }
-       throw Error('Incorrect Password')
+        }
+        throw Error('Incorrect Password');
     }
-    throw Error('Incorrect email')
-}
+    throw Error('Incorrect email');
+};
 
-const User = mongoose.model('User', userSchema)
+const User = mongoose.model('User', userSchema);
 
-module.exports = User; 
+module.exports = User;
