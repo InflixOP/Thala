@@ -1,0 +1,181 @@
+body{
+    background: url(main.jpg);
+}
+@keyframes fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+*{
+    text-decoration: none;
+}
+.navdiv{
+    display: inline-flex;
+    justify-content: space-between;
+    position: absolute;
+    right: 0%;
+    margin-right: 40px;
+    padding-right: 0;
+}
+ul{
+    list-style-type: none;
+    display:  inline-flex;
+}
+li{
+    display: inline-block;
+    margin-top: 20px;
+}
+li a{
+    color: white;
+    margin-right: 90px;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 400;
+    position: relative;
+    right: 0px;   
+}
+#lellipse{
+    position: absolute;
+    left: 0px;
+    top: 652px;
+}
+li a:after{
+    content: "";
+    position: absolute;
+    background-color:#E3C006;
+    height: 3px;
+    width: 0;
+    left: 0;
+    bottom: -10px;
+    transition: 0.3s;
+}
+li a:hover{
+    color: rgb(193, 183, 183);
+}
+
+li a:hover:after{
+    width: 100%;
+}
+button {
+    background-color: transparent;
+    color: white;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 400;
+    border-radius: 10px;
+    padding: 5px;
+    width: 120px;
+    padding-left: 10px;
+    margin-left: 25px;
+    margin-top: 10px;
+    position: relative;
+    right: 0px;
+
+}
+    button:hover {
+    box-shadow: 0 0 5px rgb(7, 40, 204),
+    0 0 25px rgb(28, 28, 206), 0 0 50px rgb(61, 21, 204),
+    0 0 100px rgb(55, 19, 219), 0 0 200px rgb(48, 27, 235);
+    }
+button a{
+    color: white;
+}
+.container{
+    position: absolute;
+    top: 46%;
+    left: 37%;
+}
+.nav{
+    height: 100px;
+    width: 100%;
+    background-color: #07091C;
+    border-radius: 50px;
+}
+body{
+    background: url(main.jpg);
+    background-repeat: repeat-y;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
+#mainthala{
+    color: #E3C006;
+    font-weight: bold;
+    font-size: 40px;
+    padding:px;
+    padding-top:  px;
+    margin-left: 48px;
+    position: relative;
+    top: 20px;
+    font-family: 'Keania One';
+}
+#abc{
+    font-size: 80px;
+    font-family: "Kelly Slab";
+}
+#illust{
+    position: absolute;
+    left:640px;
+    top:700px;
+}
+#contmain{
+    position: absolute;
+    top: 840px;
+    left: 130px;
+    color: white;
+}
+#contmain p{
+    font-family: "Inconsolata" ;
+    letter-spacing: 1.2px;
+    line-height: 1.5;
+    font-size: 20px;
+}
+#discmain{
+    font-size: 60px;
+    text-align: center;
+    font-weight: bold;
+}
+#about{
+    text-align: center;
+}
+#about p{
+    font-family: "Kelly Slab"; 
+    color: white;
+    font-size: 100px;
+    font-weight: bold;
+    position: absolute;
+    top: 1430px;
+    width: 98%;
+    text-align: center;
+}
+#aboutcont{
+    width: 85%;
+    position: absolute;
+    top: 1650px;
+    font-size: 25px;
+    color: white;
+    text-align: center;
+    font-family: "Inconsolata" ;
+    letter-spacing: 2px;
+    line-height: 1.5;
+    padding: 100px;
+}
+#rellipse{
+    position: absolute;
+    right: 0%;
+    top:1166px;
+}
