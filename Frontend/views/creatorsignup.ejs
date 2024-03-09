@@ -1,0 +1,74 @@
+<html>
+<head>
+    <script>
+        function checkcreatorform(){
+            var name= document.getElementById("creatorname");
+            if(name.value == ""){
+                alert("Please enter your name!");
+                return false;}
+            var Email=document.getElementById("creatoremail");
+            var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z]{2,4})+$/;
+            if(!filter.test(Email.value)){
+                alert('please input a valid e-mail address!');
+                return false;
+            }
+            var name= document.getElementById("creatorchannelid");
+            if(name.value == ""){
+                alert("Please enter ID of your Youtube Channel!");
+                return false;}
+                var name= document.getElementById("creatorchannelname");
+            if(name.value == ""){
+                alert("Please enter your Channel's name!");
+                return false;}
+            
+            var mid= document.getElementById("creatormetamaskid");
+            if(mid.value == ""){
+                alert("Please enter your metamask id!");
+                return false;}
+            var pass = document.getElementById("creatorpassword");
+            var pass2 = document.getElementById("creatorconfirmpassword");
+            if(pass.value !== pass2.value){
+                alert("Passwords do not match!");
+                return false;
+            }
+            else if(pass.value.length<9){
+                alert("minimum length of password should be 8 characters");
+                return false;
+            } 
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <form id="creatorform" method="post" action="" onsubmit="return checkuserform()">
+        Name:
+        <input id="creatorname" type="text" name="creatorname"/>
+        <br/>
+        Email:
+        <input id="creatoremail" type="email" name="creatoremail"/>
+        <br/>
+        Platform:
+        <select name="creatorplatform">
+            <option value="youtube">YouTube</option>
+            <option value="instagram">Instagram</option>
+        </select>
+        Channel ID:
+        <input id="creatorchannelid" type="text" name="creatorchannelid"/>
+        <br/>
+        Channel Name:
+        <input id="creatorchannelname" type="text" name="creatorchannelname"/>
+        <br/>
+        Metamask_id:
+        <input id="creatormetamaskid" type="text" name="creatormetamaskid"/>
+        <br>
+        Password:
+        <input id="creatorpassword" type="password" name="creatorpassword"/>
+        <br/>
+        Confirm Password:
+        <input id="creatorconfirmpassword" type="password" name="creatorconfirmpassword"/>
+        <br/>
+        <input class="creatorsubmit" type="submit" value="Sign Up"/>
+        <input class="creatorcancel" type="reset" value="Cancel"/>
+    </form>
+</body>
+</html>
