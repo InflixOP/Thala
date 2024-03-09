@@ -1,0 +1,72 @@
+<html>
+<head>
+    <script>
+        function checkuserform(){
+            var name= document.getElementById("username");
+            if(name.value == ""){
+                alert("Please enter your name!");
+                return false;}
+            var Email=document.getElementById("useremail");
+            var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z]{2,4})+$/;
+            if(!filter.test(Email.value)){
+                alert('please input a valid e-mail address!');
+                return false;
+            }
+            var phone=/^\d{10}$/;
+            var Phonenumber=document.getElementById("usernumber").value;
+            if (!phone.test(Phonenumber)) {  
+            	alert('Phone number is not in correct format! Please follow the format:  12345678901 ');    
+                 return false;  
+            }
+            var mid= document.getElementById("usermetamaskid");
+            if(mid.value == ""){
+                alert("Please enter your metamask id!");
+                return false;}
+            var pass = document.getElementById("userpassword");
+            var pass2 = document.getElementById("userconfirmpassword");
+            var age = document.getElementById("userage");
+            if(parseInt(age.value, 10) < 18){
+                alert("Age should be above 18");
+                return false;
+            } 
+
+            if(pass.value !== pass2.value){
+                alert("Passwords do not match!");
+                return false;
+            }
+            else if(pass.value.length<9){
+                alert("minimum length of password should be 8 characters");
+                return false;
+            } 
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <form id="userform" method="post" action="" onsubmit="return checkuserform()">
+        Name:
+        <input id="username" type="text" name="username"/>
+        <br/>
+        Email:
+        <input id="useremail" type="email" name="useremail"/>
+        <br/>
+        Phone Number:
+        <input id="usernumber" type="text" name="usernumber"/>
+        <br>
+        Age:
+        <input id="userage" type="text" name="userage"/>
+        <br>
+        Metamask_id:
+        <input id="usermetamaskid" type="text" name="usermetamaskid"/>
+        <br>
+        Password:
+        <input id="userpassword" type="password" name="userpassword"/>
+        <br/>
+        Confirm Password:
+        <input id="userconfirmpassword" type="password" name="userconfirmpassword"/>
+        <br/>
+        <input class="usersubmit" type="submit" value="Sign Up"/>
+        <input class="usercancel" type="reset" value="Cancel"/>
+    </form>
+</body>
+</html>
