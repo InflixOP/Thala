@@ -1,6 +1,32 @@
 <html>
 <head>
+    <link href='https://fonts.googleapis.com/css?family=Keania One' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Rajdhani:wght@300&display=swap"rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kelly+Slab&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400;500;600&family=Inter:wght@500&family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Khand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="usersignup.css"> 
+    <title>Sign Up</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script>
+        function remmid(){
+                var x=document.getElementById("cpdimg");
+                x.style.display="none";
+            }
+            function rempsd(){
+                var x=document.getElementById("psdimg");
+                x.style.display="none";
+            }
+            function remcpd(){
+                var x=document.getElementById("cpdimg");
+                x.style.display="none";
+            }
         function checkuserform(){
             var name= document.getElementById("username");
             if(name.value == ""){
@@ -43,30 +69,26 @@
     </script>
 </head>
 <body>
-    <form id="userform" method="post" action="" onsubmit="return checkuserform()">
-        Name:
-        <input id="username" type="text" name="username"/>
-        <br/>
-        Email:
-        <input id="useremail" type="email" name="useremail"/>
-        <br/>
-        Phone Number:
-        <input id="usernumber" type="text" name="usernumber"/>
-        <br>
-        Age:
-        <input id="userage" type="text" name="userage"/>
-        <br>
-        Metamask_id:
-        <input id="usermetamaskid" type="text" name="usermetamaskid"/>
-        <br>
-        Password:
-        <input id="userpassword" type="password" name="userpassword"/>
-        <br/>
-        Confirm Password:
-        <input id="userconfirmpassword" type="password" name="userconfirmpassword"/>
-        <br/>
-        <input class="usersubmit" type="submit" value="Sign Up"/>
-        <input class="usercancel" type="reset" value="Cancel"/>
+    <div class="nav"><span id="mainthala">Thala</span>
+        <span id="homepage"><a href="index.ejs" >Home</a></span>
+      </div>
+      <img id="signback" src="Rectangle 19.svg" alt="not found">
+      <img id="signuimg" src="Business, error _ comment, review, account, profile, user, list, problem.svg" alt="">
+      <p id="signuhead">Signup as a User</p>
+      <form id="userform" method="post" action="usersignin.ejs" onsubmit="return checkuserform()">
+        <img id="midimg"src="Password.svg" alt="">
+        <img id="psdimg"src="Group.svg" alt="">
+        <img id="cpdimg"src="Group.svg" alt="">
+        <input class="inputplace" id="username" type="text" name="username" placeholder="     Username"/><br>
+        <input class="inputplace" id="useremail" type="email" name="useremail" placeholder="     Email"/><br>
+        <input class="inputplace" id="usernumber" type="text" name="usernumber" placeholder="     Phone Number"/><br>
+        <input class="inputplace" id="userage" type="text" name="userage" placeholder="     Age"/><br>
+        <input class="inputplace" id="usermetamaskid" type="text" name="usermetamaskid" placeholder="       Metamask ID" onkeypress="remmid()"/><br>
+        <input class="inputplace" id="userpassword" type="password" name="userpassword" placeholder="       Password" onkeypress="rempsd()"/><br>
+        <input class="inputplace" id="userconfirmpassword" type="password" name="userconfirmpassword" placeholder="       Confirm Password" onkeypress="remcpd()"/><br>
+        <input id="usersubmit" type="submit" value="Submit"/>
     </form>
+    
+    
 </body>
 </html>

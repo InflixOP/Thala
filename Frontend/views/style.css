@@ -76,9 +76,10 @@ button {
     background-color: transparent;
     color: white;
     font-family: 'Lexend', sans-serif;
+    font-size: 15=px;
     font-weight: 400;
     border-radius: 10px;
-    padding: 5px;
+    padding: 10px;
     width: 120px;
     padding-left: 10px;
     margin-left: 25px;
@@ -87,7 +88,8 @@ button {
     right: 0px;
 
 }
-    button:hover {
+    button:hover{
+        color: red;
     box-shadow: 0 0 5px rgb(7, 40, 204),
     0 0 25px rgb(28, 28, 206), 0 0 50px rgb(61, 21, 204),
     0 0 100px rgb(55, 19, 219), 0 0 200px rgb(48, 27, 235);
@@ -179,3 +181,22 @@ body{
     right: 0%;
     top:1166px;
 }
+
+#mdiv{
+    font-size: large;
+    font-weight: bolder;
+    position: absolute;
+    left: 35px;
+    top: 420px;
+}
+#mcont{
+    font-size: 50px;
+}
+#mbut{
+    height: 60px;
+    width: 300px;
+    font-size: larger;
+    color: orange;
+    background-color: orange;
+}
+

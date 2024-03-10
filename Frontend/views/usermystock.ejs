@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href='https://fonts.googleapis.com/css?family=Keania One' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Rajdhani:wght@300&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kelly+Slab&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400;500;600&family=Inter:wght@500&family=Roboto:wght@500&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="usersignup.css">
+    <title>Sign Up</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        @keyframes fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }}
+        body {
+            background-image: url("vecteezy_abstract-futuristic-digital-background-technology-for_5550031 2.jpg");
+        }
+
+        nav {
+            height: 100px;
+            width: 100%;
+            background-color: #07091C;
+            border-radius: 50px;
+            display: flex;
+        }
+
+        #mainthala {
+            color: #E3C006;
+            font-size: 40px;
+            margin-left: 48px;
+            position: relative;
+            top: 20px;
+            font-family: 'Keania One';
+        }
+
+        ul {
+            padding-top: 40px;
+            padding-left: 10px;
+            margin-left: 120px;
+        }
+
+        ul li {
+            display: inline;
+            padding: 50px;
+
+        }
+
+        li a {
+            text-decoration: none;
+            color: #BEF2F5;
+            font-size: 20px;
+            font-family: 'inter';
+            font-style: italic;
+        }
+
+        .sto {
+            font-size: 32px;
+            font-family: 'inter';
+            color: white;
+            font-style: italic;
+            font-weight: lighter;
+            padding: 50px;
+        }
+        li a{
+    color: white;
+    margin-right: 90px;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 400;
+    position: relative;
+    right: 0px;   
+}
+        li a:after{
+    content: "";
+    position: absolute;
+    background-color:#E3C006;
+    height: 3px;
+    width: 0;
+    left: 0;
+    bottom: -10px;
+    transition: 0.3s;
+}
+li a:hover{
+    color: rgb(193, 183, 183);
+}
+
+li a:hover:after{
+    width: 100%;
+}
+        .main {
+            background-color: #D9D9D9;
+            width: 1031px;
+            height: 400px;
+            border-radius: 17px;
+            display: block;
+        }
+
+        .main h1 {
+            display: block;
+            font-size: 32px;
+            font-family: 'inter';
+            text-align: left;
+            padding-left: 40px;
+            padding-top: 13px;
+            padding-bottom: 0px;
+            margin-bottom: 0px;
+        }
+
+        .lp {
+            display: flex;
+            justify-content: space-around;
+            margin: 13px;
+            text-align: left;
+            font-size: 20px;
+            font-family: 'inter';
+            font-weight: normal;
+            padding-top: 0px;
+            margin-top: 0px;
+        }
+
+        .lp h2 {
+            font-weight: lighter;
+        }
+
+        .lp p {
+            text-align: right;
+            font-style: italic;
+
+        }
+
+        .l {
+            padding: 15px;
+        }
+
+        .curr {
+            float: left;
+
+            margin-left: 50px;
+            padding: 2px;
+            font-size: 15px;
+            font-family: 'inter';
+            font-style: italic;
+            background-color: #C2BDBD;
+            border: none;
+            padding: 12px;
+            padding-left: 20px;
+            padding-right: 20px;
+            border-radius: 20px;
+        }
+
+        .date {
+            text-align: center;
+            padding: 13px;
+            margin-top: 30px;
+            color: white;
+        }
+
+        .date input {
+            /* padding: 13px; */
+            margin: 30px;
+    
+        }
+        #submit{
+            text-align: center;
+            padding: 7px 70px 7px 70px;
+            border-radius: 20px;
+            background-color: #101642;
+            color: white;
+            border: none;
+            font-size: 20px;
+            font-family: 'inter';
+            font-weight: lighter;
+            margin-bottom: 70px;
+        }
+        .box{
+            width: 1031px;
+            height: 114px;
+            background-color: #D9D9D9;
+            margin: 13px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <span id="mainthala">Thala</span>
+        <ul>
+            <li><a href="index.ejs">Home</a></li>
+            <li><a href="#aboutcont">My COA</a></li>
+            <li><a href="#aboutcont">My Stocks</a></li>
+            <li><a href="#aboutcont">Stock History</a></li>
+        </ul>
+    </nav>
+
+    <h1 class="sto">My Stocks</h1>
+    <center>
+        <div class="main">
+            <h1>Summary:</h1>
+            <div class="lp">
+                <div class="lm">
+                    <div class="l l1">
+                        <h2>Money Invested till Date:</h2>
+                        <p>Rs. XXXXXXX</p>
+                    </div>
+                    <div class="l l2">
+                        <h2>Money Returned till Date:</h2>
+                        <p>Rs. XXXXXXX</p>
+                    </div>
+                    <div class="l l5">
+                        <h2>Profit/Loss%:</h2>
+                        <p>Rs. XX%</p>
+                    </div>
+                </div>
+                <div class="ln">
+                    <div class="l l3">
+                        <h2>Number of Tokens brought:</h2>
+                        <p>XXX</p>
+                    </div>
+                    <div class="l l4">
+                        <h2>Number of Tokens sold:</h2>
+                        <p>XXX</p>
+                    </div>
+                </div>
+            </div>
+            <button class="curr">Change currency</button>
+        </div>
+    </center>
+
+    <div class="date">
+        From Date:<input type="date" value="hello">
+        End Date:<input type="date" value="hello">
+    </div>
+
+    <center>
+        <button type="submit" id="submit">Submit</button>
+    </center>
+
+    <center>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </center>
+
+
+
+
+</body>
+
+</html>
