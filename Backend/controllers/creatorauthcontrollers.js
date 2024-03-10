@@ -1,6 +1,5 @@
 const Creator = require('../models/Creator');
 const jwt = require('jsonwebtoken');
-const axios = require('axios');
 
 const handleErrors = (err) => {
     console.log(err.message, err.code);
@@ -44,11 +43,38 @@ module.exports.creatorloginget = (req, res) => {
     res.render('creatorlogin');
 };
 
+const axios = require('axios');
+
 module.exports.creatorsignuppost = async (req, res) => {
     const { creatorname, creatoremail, creatorplatformActive, creatorchannelid, creatorchannelname, creatormetamaskid, creatorpassword } = req.body;
+    
     try {
-        const creator = await Creator.create({ creatorname, creatoremail, creatorplatformActive, creatorchannelid, creatorchannelname, creatormetamaskid, creatorpassword });
+        // Fetch views and subscribers count from the YouTube API
+        const { views: todayViews, subscribers } = await fetchChannelData(creatorchannelid);
+        const { views: yesterdayViews } = await fetchChannelDataForLastNDays(creatorchannelid, 2);
+
+        const { tokens, pricepertoken } = calculateTokenAllocation(subscribers);
+        
+        
+        let adjustedPricePerToken = pricepertoken;
+
+      
+        const percentageChange = ((todayViews - yesterdayViews) / yesterdayViews) * 100;
+
+        
+        if (percentageChange > 0) {
+            adjustedPricePerToken *= (1 + percentageChange / 100);
+        } else if (percentageChange < 0) {
+            adjustedPricePerToken *= (1 - Math.abs(percentageChange) / 100);
+        }
+
+        
+        const creator = await Creator.create({ creatorname, creatoremail, creatorplatformActive, creatorchannelid, creatorchannelname, creatormetamaskid, creatorpassword, todayViews, yesterdayViews, tokens, pricepertoken: adjustedPricePerToken });
+        
+        
         const token = createToken(creator._id);
+        
+        // Set cookie and respond with creator ID
         res.cookie('jwt', token, { httpOnly:true, maxAge: maxAge * 1000 });
         res.status(201).json({ creator: creator._id });
     } catch (err) {
@@ -56,6 +82,83 @@ module.exports.creatorsignuppost = async (req, res) => {
         res.status(400).json({ errors });
     }
 };
+
+async function fetchChannelDataForLastNDays(channelId, days) {
+    const today = new Date();
+    const yesterday = new Date(today);
+    yesterday.setDate(today.getDate() - days);
+
+    const todayFormatted = formatDate(today);
+    const yesterdayFormatted = formatDate(yesterday);
+
+    try {
+        const todayResponse = await axios.get(`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${channelId}&key=AIzaSyC-jOYXLF0tkK7AwI3Mqa791zIcAvY3pGQ&date=${todayFormatted}`);
+        const yesterdayResponse = await axios.get(`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${channelId}&key=AIzaSyC-jOYXLF0tkK7AwI3Mqa791zIcAvY3pGQ&date=${yesterdayFormatted}`);
+
+        const todayViews = todayResponse.data.items[0].statistics.viewCount;
+        const yesterdayViews = yesterdayResponse.data.items[0].statistics.viewCount;
+
+        return { todayViews, yesterdayViews };
+    } catch (err) {
+        throw new Error('Failed to fetch YouTube channel data');
+    }
+}
+
+function formatDate(date) {
+    const year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+
+    if (month < 10) {
+        month = '0' + month;
+    }
+    if (day < 10) {
+        day = '0' + day;
+    }
+
+    return `${year}-${month}-${day}`;
+}
+
+
+function calculateTokenAllocation(subscribers) {
+    if (subscribers >= 5000 && subscribers < 10000) {
+        return { tokens: 20, pricepertoken: 200 };
+    } else if (subscribers >= 10000 && subscribers < 50000) {
+        return { tokens: 80, pricepertoken: 400 };
+    } else if (subscribers >= 50000 && subscribers < 100000) {
+        return { tokens: 200, pricepertoken: 600 };
+    } else if (subscribers >= 100000 && subscribers < 300000) {
+        return { tokens: 1000, pricepertoken: 1000 };
+    } else if (subscribers >= 300000 && subscribers < 500000) {
+        return { tokens: 1000, pricepertoken: 1500 };
+    } else if (subscribers >= 500000 && subscribers < 1000000) {
+        return { tokens: 1500, pricepertoken: 2500 };
+    } else if (subscribers >= 1000000 && subscribers < 5000000) {
+        return { tokens: 2500, pricepertoken: 4000 };
+    } else if (subscribers >= 5000000 && subscribers < 10000000) {
+        return { tokens: 6000, pricepertoken: 6000 };
+    } else if (subscribers >= 10000000) {
+        return { tokens: 10000, pricepertoken: 10000 };
+    } else {
+        
+        return { tokens: 0, pricepertoken: 0 };
+    }
+}
+
+// Function to fetch channel views from YouTube API
+async function fetchChannelData(channelId) {
+    try {
+        const response = await axios.get(`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${channelId}&key=AIzaSyC-jOYXLF0tkK7AwI3Mqa791zIcAvY3pGQ`);
+        if (!response.data.items || !response.data.items.length) {
+            throw new Error('Failed to fetch YouTube channel data');
+        }
+        const { viewCount, subscriberCount } = response.data.items[0].statistics;
+        return { views: viewCount, subscribers: subscriberCount };
+    } catch (err) {
+        throw new Error('Failed to fetch YouTube channel data');
+    }
+}
+
 
 module.exports.creatorloginpost = async (req, res) => {
     const { creatoremail, creatorpassword } = req.body;
@@ -70,27 +173,6 @@ module.exports.creatorloginpost = async (req, res) => {
         res.status(400).json({ errors });
     }
 };
-
-module.exports.updateCreatorViews = async (req, res) => {
-    const { creatorchannelid } = req.params;
-    try {
-      // Fetch the creator with the specified creatorchannelid from the database
-      const creator = await Creator.findOne({ creatorchannelid });
-      if (!creator) {
-        // If the creator is not found, return a 404 Not Found response
-        return res.status(404).json({ error: 'Creator not found' });
-      }
-  
-      const response = await axios.get(`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${creatorchannelid}&key=AIzaSyC-jOYXLF0tkK7AwI3Mqa791zIcAvY3pGQ`);
-      const views = response.data.items[0].statistics.viewCount;
-      // Update the creator's views count in the database
-      creator.views = views;
-      await creator.save();
-      res.status(200).json({ views });
-    } catch (err) {
-      res.status(500).json({ error: err.message });
-    }
-  };
 
 module.exports.creatorlogoutget = (req, res) => {
     res.cookie('jwt', '', { maxAge: 1 });
