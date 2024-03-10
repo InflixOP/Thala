@@ -39,10 +39,26 @@ const creatorSchema = new mongoose.Schema({
         required: true,
         minlength: 8,
     },
-    views: {
+    todayViews:{
         type: Number,
         default: 0,
       },
+    yesterdayViews: {
+        type: Number,
+        default: 0,
+      },
+    tokens: {
+        type: Number,
+        default: 0,
+    },
+    pricepertoken:{
+        type: Number,
+        default: 0,
+    },
+    adjustedPricePerToken:{
+        type: Number,
+        default: 0
+    }
 });
 
 creatorSchema.pre('save', async function (next) {

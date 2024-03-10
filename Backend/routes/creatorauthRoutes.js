@@ -1,3 +1,5 @@
+// creatorauthRoutes.js
+
 const express = require('express');
 const router = express.Router();
 const { creatorsignupget, creatorsignuppost, creatorloginget, creatorloginpost, creatorlogoutget } = require('../controllers/creatorauthcontrollers');
@@ -9,11 +11,6 @@ router.post('/creatorlogin', creatorloginpost);
 router.get('/creatorlogout', creatorlogoutget);
 
 
-const { updateCreatorViews } = require('../controllers/creatorauthcontrollers');
-
-router.get('/creatorviews/:creatorchannelid', updateCreatorViews);
-
-module.exports = router;
 
 
 module.exports = router;
