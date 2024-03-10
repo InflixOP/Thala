@@ -181,3 +181,32 @@ module.exports.creatorlogoutget = (req, res) => {
     res.cookie('jwt', '', { maxAge: 1 });
     res.redirect('/');
 };
+
+
+
+
+
+module.exports.updateTokens = async (req, res) => {
+    const { creatorchannelname, quantity } = req.body;
+
+    try {
+        
+        const creator = await Creator.findOne({ creatorchannelname: creatorchannelname });
+
+        if (!creator) {
+            throw Error('Creator not found');
+        }
+
+        
+        creator.tokens -= quantity;
+
+       
+        await creator.save();
+
+        
+        res.status(200).json({ message: 'Tokens updated successfully' });
+    } catch (err) {
+        
+        res.status(400).json({ error: err.message });
+    }
+};
