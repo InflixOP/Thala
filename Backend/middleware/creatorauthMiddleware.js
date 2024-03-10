@@ -47,4 +47,32 @@ const checkCreator = (req, res, next) => {
     }
 };
 
-module.exports = { creatorrequireAuth, checkCreator };
+const getCreatorChannelName = async (req, res, next) => {
+    const token = req.cookies.jwt;
+
+    if (token) {
+        jwt.verify(token, 'thala', async (err, decodedToken) => {
+            if (err) {
+                console.log(err.message);
+                res.locals.creatorchannelname = null;
+                next();
+            } else {
+                console.log(decodedToken);
+                try {
+                    let creator = await Creator.findById(decodedToken.id);
+                    res.locals.creatorchannelname = creator.creatorchannelname;
+                    next();
+                } catch (err) {
+                    console.error(err.message);
+                    res.locals.creatorchannelname = null;
+                    next();
+                }
+            }
+        });
+    } else {
+        res.locals.creatorchannelname = null;
+        next();
+    }
+};
+
+module.exports = { creatorrequireAuth, checkCreator, getCreatorChannelName };
