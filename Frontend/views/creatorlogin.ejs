@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <script>
+            function checkcreatorform(){
+                var Email=document.getElementById("creatoremail");
+            var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z]{2,4})+$/;
+            if(!filter.test(Email.value)){
+                alert('please input a valid e-mail address!');
+                return false;
+            }
+            }
+        </script>
+    </head>
+    <body>
+        <table>
+            <form method="post" action="" onsubmit="checkcreatorform()">
+                <tr><td>Email:</td><td><input id=creatoremail type="email" name="creatoremail"></td></tr>
+                <tr><td>Password:</td><td><input id="creatorpassword" type="password" name="creatorpassword"></td></tr>
+                <tr><td colspan="2">
+                    <input id="submit" type="submit" value="Login">
+                <input id="cancel" type="submit" value="Cancel">
+                </td></tr>
+                
+            </form>
+        </table>
+        
+    </body>
+</html>

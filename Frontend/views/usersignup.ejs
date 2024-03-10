@@ -12,9 +12,74 @@
     <link rel="stylesheet" href="usersignup.css"> 
     <title>Sign Up |User</title>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.2.9/dist/web3.min.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script>
+        function deploy() {
+            document.addEventListener('DOMContentLoaded', async function () {
+                const Web3 = window.Web3;
+                let web3;
+                const initWeb3 = async () => {
+                    if (window.ethereum) {
+                        web3 = new Web3(window.ethereum);
+                        await window.ethereum.enable();
+                    } else if (window.web3) {
+                        web3 = new Web3(window.web3.currentProvider);
+                    } else {
+                        console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
+                        return null;
+                    }
+                    return web3;
+                };
+                
+                const createWalletBtn = document.getElementById('createWalletBtn');
+                createWalletBtn.addEventListener('click', async function (event) {
+                    event.preventDefault();
+                    await initWeb3();
+                    
+                    if (!web3) {
+                        console.error('Web3 is not initialized.');
+                        return;
+                    }
+                    const accounts = await web3.eth.getAccounts();
+                    
+                    if (accounts.length === 0) {
+                        console.error('MetaMask is not connected.');
+                        return;
+                    }
+                    const abi = [{"inputs":[{"internalType":"bytes32","name":"signupId","type":"bytes32"},{"internalType":"string","name":"name","type":"string"},{"internalType":"string","name":"email","type":"string"},{"internalType":"uint256","name":"phone","type":"uint256"},{"internalType":"uint256","name":"age","type":"uint256"},{"internalType":"string","name":"addr","type":"string"}],"name":"addUser","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"name":"signup","outputs":[{"internalType":"string","name":"name","type":"string"},{"internalType":"string","name":"email","type":"string"},{"internalType":"uint256","name":"phone","type":"uint256"},{"internalType":"uint256","name":"age","type":"uint256"},{"internalType":"string","name":"addr","type":"string"}],"stateMutability":"view","type":"function"}];
+                    const contractAddress = '0xD7ACd2a9FD159E69Bb102A1ca21C9a3e3A5F771B';
+                    const contract = new web3.eth.Contract(abi, contractAddress);
+                    
+                    const name = document.getElementById('username').value;
+                    const email = document.getElementById('useremail').value;
+                    const phone = parseInt(document.getElementById('usernumber').value);
+                    const age = parseInt(document.getElementById('userage').value);
+                    const addr = document.getElementById('usermetamaskid').value;
+                    
+                    try {
+                        const signupId = web3.utils.keccak256(web3.utils.randomHex(32));
+                        
+                        const result = await contract.methods.addUser(signupId, name, email,phone,age, addr)
+                            .send({ from: accounts[0] });
+                        
+                        console.log('Transaction successful! Transaction hash:', result.transactionHash);
+                        
+                        const userDetails = await contract.methods.signup(signupId).call();
+                        console.log('User Details:', userDetails);
+                    } catch (error) {
+                        console.error('Error signing up user:', error);
+                    }
+                });
+            });
+        }
+        function display(){
+            var x=document.getElementById("usersubmit")
+            x.style.display="block";
+            var y=document.getElementById("createWalletBtn")
+            y.style.display="none";
+        }
         function remmid(){
                 var x=document.getElementById("cpdimg");
                 x.style.display="none";
@@ -28,6 +93,7 @@
                 x.style.display="none";
             }
         function checkuserform(){
+            var pass=document.getElementById("userpassword");
             var name= document.getElementById("username");
             if(name.value == ""){
                 alert("Please enter your name!");
@@ -48,34 +114,29 @@
             if(mid.value == ""){
                 alert("Please enter your metamask id!");
                 return false;}
-            var pass = document.getElementById("userpassword");
-            var pass2 = document.getElementById("userconfirmpassword");
             var age = document.getElementById("userage");
             if(parseInt(age.value, 10) < 18){
                 alert("Age should be above 18");
                 return false;
             } 
-
-            if(pass.value !== pass2.value){
-                alert("Passwords do not match!");
-                return false;
-            }
+            
             else if(pass.value.length<9){
                 alert("minimum length of password should be 8 characters");
                 return false;
             } 
             return true;
         }
+        deploy();
     </script>
 </head>
 <body>
     <div class="nav"><span id="mainthala">Thala</span>
-        <span id="homepage"><a href="index.ejs" >Home</a></span>
+        <span id="homepage"><a href="/" >Home</a></span>
       </div>
       <img id="signback" src="Rectangle 19.svg" alt="not found">
       <img id="signuimg" src="Business, error _ comment, review, account, profile, user, list, problem.svg" alt="">
       <p id="signuhead">Signup as a User</p>
-      <form id="userform" method="post" action="usersignin.ejs" onsubmit="return checkuserform()">
+      <form id="userform" method="post" action="/usersignup" onsubmit="return checkuserform()">
         <img id="midimg"src="Password.svg" alt="">
         <img id="psdimg"src="Group.svg" alt="">
         <input class="inputplace" id="username" type="text" name="username" placeholder="     Username"/><br>
@@ -84,9 +145,14 @@
         <input class="inputplace" id="userage" type="text" name="userage" placeholder="     Age"/><br>
         <input class="inputplace" id="usermetamaskid" type="text" name="usermetamaskid" placeholder="       Metamask ID" onkeypress="remmid()"/><br>
         <input class="inputplace" id="userpassword" type="password" name="userpassword" placeholder="       Password" onkeypress="rempsd()"/><br>
+<<<<<<< Updated upstream
         <input id="usersubmit" type="submit" value="Submit"/>
+=======
+        <input id="usersubmit" type="submit" value="Sign Up" style="display: none;">
+        
+
+>>>>>>> Stashed changes
     </form>
-    
-    
+    <button id="createWalletBtn" onclick="display()">Create Wallet</button>
 </body>
 </html>

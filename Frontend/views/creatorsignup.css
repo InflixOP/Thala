@@ -20,8 +20,19 @@
         transform: translateX(0);
     }
 }
+
 *{
     text-decoration: none;
+}
+#signback{
+    position: absolute;
+    top: 186px;
+    left: 274px;
+}
+#signuimg{
+    position: absolute;
+    top: 246px;
+    right: 334px;
 }
 
 .nav{
@@ -82,32 +93,6 @@ body{
     color: white;
     letter-spacing: 1.5px;
 }
-#smart{
-    background-color: #22279B;
-    height: 37px;
-    width: 163px;
-    border-radius: 20px;
-    position: relative;
-    top: 20px;
-    left: 90px;
-    border: none;
-    font-family: Khand;
-    color: white;
-    letter-spacing: 1.5px;
-}
-#createWalletBtn{
-    background-color: #22279B;
-    height: 37px;
-    width: 163px;
-    border-radius: 20px;
-    position: relative;
-    top: 435px;
-    left: 420px;
-    border: none;
-    font-family: Khand;
-    color: white;
-    letter-spacing: 1.5px;
-}
 #usersubmit:active{
     height: 30px;
     width: 150px;
@@ -149,8 +134,8 @@ body{
 }
 #homepage{
     position: absolute;
-    top: 40px;
-    left:1300px
+    top: 48px;
+    right: 48px;
 }
 
 .nav a{
@@ -179,3 +164,4 @@ body{
 .nav a:hover:after{
     width: 100%;
 }
+

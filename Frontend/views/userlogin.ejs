@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <link href='https://fonts.googleapis.com/css?family=Keania One' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Rajdhani:wght@300&display=swap"rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kelly+Slab&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400;500;600&family=Inter:wght@500&family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Khand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="usersignin.css">
+        <title>Sign In |User</title>
+        <script>
+            function rememl(){
+                var x=document.getElementById("emlimg");
+                x.style.display="none";
+            }
+            function rempsd(){
+                var x=document.getElementById("psdimg");
+                x.style.display="none";
+            }
+            function checkuserform(){
+                var Email=document.getElementById("useremail");
+            var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z]{2,4})+$/;
+            if(!filter.test(Email.value)){
+                alert('please input a valid e-mail address!');
+                return false;
+            }
+            }
+        </script>
+    </head>
+    <body>
+        <div class="nav"><span id="mainthala">Thala</span>
+            <span id="homepage"><a href="index.ejs" >Home</a></span>
+          </div>
+          <img id="signback" src="Rectangle 19.svg" alt="not found">
+          <img id="signuimg" src="communication, business, social media _ messaging, message, smartphone, mobile, man.svg" alt="">
+          <div ><p id="signuhead">Welcome Back</p>
+            <p id="signu">Enter your credentials to login in</p>
+        </div>
+          <form id="userform" method="post" action="/userlogin" onsubmit="return checkuserform()">
+            <img id="emlimg"src="Vector.svg" alt="">
+            <img id="psdimg"src="Group.svg" alt="">
+            <div>
+                
+            </div>
+            <input class="inputplace" id="useremail" type="email" name="useremail" placeholder="        Email" onkeypress="rememl()" /><br>
+            <input class="inputplace" id="userpassword" type="password" name="userpassword" placeholder="        Password"onkeypress="rempsd()" /><br>
+           
+            <input id="usersubmit" type="submit" value="Submit"/>
+
+            </form>
+            
+        </table>
+        
+    </body>
+</html>

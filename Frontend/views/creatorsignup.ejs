@@ -10,11 +10,76 @@
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Khand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="usersignup.css"> 
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.2.9/dist/web3.min.js"></script>
     <title>Sign Up |Creator</title>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script>
+        function deploy(){
+            document.addEventListener('DOMContentLoaded', async function () {
+                const Web3 = window.Web3;
+                let web3;
+                const initWeb3 = async () => {
+                    if (window.ethereum) {
+                        web3 = new Web3(window.ethereum);
+                        await window.ethereum.enable();
+                    } else if (window.web3) {
+                        web3 = new Web3(window.web3.currentProvider);
+                    } else {
+                        console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
+                        return null;
+                    }
+                    return web3;
+                };
+const createWalletBtn = document.getElementById('createWalletBtn');
+                createWalletBtn.addEventListener('click', async function (event) {
+    event.preventDefault();
+    await initWeb3();
+
+    if (!web3) {
+        console.error('Web3 is not initialized.');
+        return;
+    }
+    const accounts = await web3.eth.getAccounts();
+
+    if (accounts.length === 0) {
+        console.error('MetaMask is not connected.');
+        return;
+    }
+    const abi = [{"inputs":[{"internalType":"bytes32","name":"signupId","type":"bytes32"},{"internalType":"string","name":"name","type":"string"},{"internalType":"string","name":"email","type":"string"},{"internalType":"string","name":"addr","type":"string"},{"internalType":"string","name":"channel_id","type":"string"},{"internalType":"string","name":"channel_name","type":"string"}],"name":"addUser","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"name":"signup","outputs":[{"internalType":"string","name":"name","type":"string"},{"internalType":"string","name":"email","type":"string"},{"internalType":"string","name":"addr","type":"string"},{"internalType":"string","name":"channel_id","type":"string"},{"internalType":"string","name":"channel_name","type":"string"}],"stateMutability":"view","type":"function"}];
+    const contractAddress = '0xd9145CCE52D386f254917e481eB44e9943F39138';
+    const contract = new web3.eth.Contract(abi, contractAddress);
+
+    const name = document.getElementById('creatorname').value;
+    const email = document.getElementById('creatoremail').value;
+    const addr = document.getElementById('creatormetamaskid').value;
+    const channel_id = document.getElementById('creatorchannelid').value;
+    const channel_name = document.getElementById('creatorchannelname').value;
+
+    try {
+        const signupId = web3.utils.keccak256(web3.utils.randomHex(32));
+
+        const result = await contract.methods.addUser(signupId, name, email, addr,channel_id,channel_name)
+            .send({ from: accounts[0] });
+
+        console.log('Transaction successful! Transaction hash:', result.transactionHash);
+
+        const creatorDetails = await contract.methods.signup(signupId).call();
+        console.log('User Details:', creatorDetails);
+    } catch (error) {
+        console.error('Error signing up creator:', error);
+    }
+});
+            });
+        }
+function display(){
+    var x=document.getElementById("usersubmit")
+    x.style.display="block";
+    var y=document.getElementById("createWalletBtn")
+    y.style.display="none";
+}
+        
         function checkcreatorform() {
             var name = document.getElementById("creatorname");
             if (name.value === "") {
@@ -77,16 +142,17 @@
                 instainfo[x].style.display ="none";}
             }
         }
+        deploy();
     </script>
 </head>
 <body>
     <div class="nav"><span id="mainthala">Thala</span>
-        <span id="homepage"><a href="index.ejs" >Home</a></span>
+        <span id="homepage"><a href="/" >Home</a></span>
       </div>
       <img id="signback" src="Rectangle 19.svg" alt="not found">
       <img id="signuimg" src="Social media, Delivery, Business _ fast, speed, account, graph, success, happy.svg" alt="">
       <p id="signuhead">Signup as a Creator</p>
-      <form id="userform" method="post" action="usersignin.ejs" onsubmit="return checkcreatorform()">
+      <form id="userform" method="post" action="/creatorsignup" onsubmit="return checkcreatorform()">
         <img id="midimg"src="Password.svg" alt="">
         <img id="psdimg"src="Group.svg" alt="">
         <input class="inputplace" id="creatorname" type="text" name="creatorname" placeholder="     Name"/><br>
@@ -96,10 +162,10 @@
             <br>
             <input class="inputplace" id="creatorchannelname" type="text" name="creatorchannelname"placeholder="     Channel Name"/><br>
         <input class="inputplace" id="creatormetamaskid" type="text" name="creatormetamaskid" placeholder="       Metamask ID" onkeypress="remmid()"/><br>
-        <input class="inputplace" id="creatorrpasword" type="password" name="creatorpassword" placeholder="        Password"/><br>
-        <input id="usersubmit" type="submit" value="Submit"/>
+        <input class="inputplace" id="creatorrpasword" type="password" name="creatorpassword" required placeholder="        Password" onkeypress="rempsd()"/><br>
+        <input id="usersubmit" type="submit" value="Sign Up" style="display: none;">
     </form>
-    
+    <button id="createWalletBtn" onclick="display()">Create Wallet</button>
 </body>
 </html>
 
