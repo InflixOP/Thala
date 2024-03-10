@@ -66,12 +66,13 @@ module.exports.userloginpost = async (req, res) => {
         }
         const token = createToken(user._id);
         res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
-        res.status(200).json({ user: user._id });
+        res.status(200).redirect('/userdashboard'); // Redirect to userdashboard
     } catch (err) {
         const errors = handleErrors(err);
         res.status(400).json({ errors });
     }
 };
+
 
 module.exports.userlogoutget = (req, res) => {
     res.cookie('jwt', '', { maxAge: 1 });
