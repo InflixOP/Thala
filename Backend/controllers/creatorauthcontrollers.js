@@ -165,6 +165,9 @@ module.exports.creatorloginpost = async (req, res) => {
 
     try {
         const creator = await Creator.creatorlogin(creatoremail, creatorpassword);
+        if (!creator) {
+            throw Error('Creator not found'); // Handle the case where creator is null
+        }
         const token = createToken(creator._id);
         res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
         res.status(200).json({ creator: creator._id });

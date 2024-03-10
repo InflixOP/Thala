@@ -47,4 +47,32 @@ const checkUser = (req, res, next) => {
     }
 };
 
-module.exports = { userrequireAuth, checkUser };
+const getUsername = async (req, res, next) => {
+    const token = req.cookies.jwt;
+
+    if (token) {
+        jwt.verify(token, 'thala', async (err, decodedToken) => {
+            if (err) {
+                console.log(err.message);
+                res.locals.username = null;
+                next();
+            } else {
+                console.log(decodedToken);
+                try {
+                    let user = await User.findById(decodedToken.id);
+                    res.locals.username = user.username;
+                    next();
+                } catch (err) {
+                    console.error(err.message);
+                    res.locals.username = null;
+                    next();
+                }
+            }
+        });
+    } else {
+        res.locals.username = null;
+        next();
+    }
+};
+
+module.exports = { userrequireAuth, checkUser, getUsername };
