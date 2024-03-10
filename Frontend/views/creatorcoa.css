@@ -1,0 +1,46 @@
+.bo1{
+    background-color: #C1C1C1;
+    border-radius: 20px;
+    height: 515px;
+    width: 1070px;
+    margin-left: 170px;
+    margin-top: 80px;
+}
+#ao{
+    font-weight: bolder;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 40px;
+    padding-left: 50px;
+    padding-top: 40px;
+}
+#p1{
+    font-family: Inter;
+    margin-top: 30px;
+    margin-left: 150px;
+    font-size: 30px;
+}
+#p2{
+    margin-left: 300px;
+    position: relative;
+    top: -20px;
+    font-size: 15px;
+    font-family: Inter;
+}
+#idf{
+    margin-left: 350px;
+    height: 30px;
+    width: 350px;
+    border-radius: 8px;
+
+}
+#ida{
+    position: relative;
+    left: -230px;
+    font-size: large;
+    top: 90px;
+    height: 50px;
+    width: 130px;
+    border-radius: 140px;
+    color: white;
+    background-color: rgb(14, 14, 94);
+}
