@@ -1,8 +1,34 @@
 <html>
     <head>
+        <link href='https://fonts.googleapis.com/css?family=Keania One' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Rajdhani:wght@300&display=swap"rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kelly+Slab&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400;500;600&family=Inter:wght@500&family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Khand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="usersignin.css">
+        <title>Sign In |User</title>
         <script>
-            function checkcreatorform(){
-                var Email=document.getElementById("creatoremail");
+            function rememl(){
+                var x=document.getElementById("emlimg");
+                x.style.display="none";
+            }
+            function rempsd(){
+                var x=document.getElementById("psdimg");
+                x.style.display="none";
+            }
+            function checkuserform(){
+                var Email=document.getElementById("useremail");
             var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z]{2,4})+$/;
             if(!filter.test(Email.value)){
                 alert('please input a valid e-mail address!');
@@ -12,16 +38,26 @@
         </script>
     </head>
     <body>
-        <table>
-            <form method="post" action="" onsubmit="checkcreatorform()">
-                <tr><td>Email:</td><td><input id=creatoremail type="email" name="creatoremail"></td></tr>
-                <tr><td>Password:</td><td><input id="creatorpassword" type="password" name="creatorpassword"></td></tr>
-                <tr><td colspan="2">
-                    <input id="submit" type="submit" value="Login">
-                <input id="cancel" type="submit" value="Cancel">
-                </td></tr>
+        <div class="nav"><span id="mainthala">Thala</span>
+            <span id="homepage"><a href="index.ejs" >Home</a></span>
+          </div>
+          <img id="signback" src="Rectangle 19.svg" alt="not found">
+          <img id="signuimg" src="Business, analytics, sucess, startup, Technology _ account, setting, options, preferences.svg" alt="">
+          <div ><p id="signuhead">Welcome Back Creator</p>
+            <p id="signu">Enter your credentials to login in</p>
+        </div>
+          <form id="userform" method="post" action="usersignin.ejs" onsubmit="return checkuserform()">
+            <img id="emlimg"src="Vector.svg" alt="">
+            <img id="psdimg"src="Group.svg" alt="">
+            <div>
                 
+            </div>
+            <input class="inputplace" id="useremail" type="email" name="useremail" placeholder="        Email" onkeypress="rememl()" /><br>
+            <input class="inputplace" id="userpassword" type="password" name="userpassword" placeholder="        Password"onkeypress="rempsd()" /><br>
+            <input id="usersubmit" type="submit" value="Submit"/>
+
             </form>
+            
         </table>
         
     </body>
