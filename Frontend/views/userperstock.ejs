@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock</title>
+    <link href='https://fonts.googleapis.com/css?family=Keania One' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Rajdhani:wght@300&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kelly+Slab&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400;500;600&family=Inter:wght@500&family=Roboto:wght@500&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="userperstock.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body {
+            background-image: url("vecteezy_abstract-futuristic-digital-background-technology-for_5550031 2.jpg");
+        }
+
+        nav {
+            height: 100px;
+            width: 100%;
+            background-color: #07091C;
+            border-radius: 50px;
+            display: flex;
+        }
+
+        #mainthala {
+            color: #E3C006;
+            font-size: 40px;
+            margin-left: 48px;
+            position: relative;
+            top: 20px;
+            font-family: 'Keania One';
+        }
+
+        ul {
+            padding-top: 40px;
+            padding-left: 170px;
+            margin-left: 120px;
+        }
+
+        ul li {
+            display: inline;
+            padding: 50px;
+
+        }
+
+        li a {
+            text-decoration: none;
+            color: #BEF2F5;
+            font-size: 20px;
+            font-family: 'inter';
+            font-style: italic;
+        }
+
+        .search {
+            margin-top: 40px;
+            background-color: white;
+            height: 56px;
+            width: 865px;
+            border-radius: 20px;
+            background-color: #D9D9D9;
+        }
+
+        .search p {
+            color: #656060;
+            font-size: 20px;
+            text-align: left;
+            padding: 15px;
+            padding-left: 50px;
+            font-family: 'inter';
+        }
+
+        .line {
+            background-color: #192257;
+            margin-top: 30px;
+            height: 40px;
+        }
+
+        .line ul {
+            padding-top: 10px;
+            padding-left: 0px;
+            padding-right: 0px;
+            float: left;
+            margin-left: 0px;
+        }
+
+        .line a {
+            font-size: 16px;
+            /* display: inline-flexbox; */
+            padding-bottom: 13px;
+        }
+
+        .box {
+            border-radius: 20px;
+        }
+
+        .box1 {
+            width: 988px;
+            height: 226px;
+            background-color: #C1C1C1;
+            margin-top: 80px;
+        }
+
+        .box2 {
+            width: 988px;
+            height: 146px;
+            background-color: #C1C1C1;
+            margin-top: 60px;
+            display: flex;
+        }
+
+        #dec {
+            font-family: 'Keania One';
+            font-size: 48px;
+            padding: 50px;
+            font-weight: lighter;
+        }
+
+        .card {
+            display: flex;
+            justify-content: space-around;
+            padding-left: 70px;
+            padding-right: 70px;
+        }
+
+        .card1 {
+            width: 282px;
+            height: 360px;
+            background-color: #C1C1C1;
+            border-radius: 13px;
+        }
+
+        .card2 {
+            width: 282px;
+            height: 360px;
+            background-color: #C1C1C1;
+            border-radius: 13px;
+        }
+
+        .card3 {
+            width: 282px;
+            height: 360px;
+            background-color: #C1C1C1;
+            border-radius: 13px;
+        }
+
+        .sto {
+            color: #67E8E0;
+            font-size: 48px;
+            font-family: 'keania one';
+            font-weight: lighter;
+            padding: 50px;
+
+        }
+
+        .long {
+            background-color: #C1C1C1;
+            width: 1031px;
+            height: 114px;
+            border-radius: 13px;
+        }
+
+        .l1 {
+            margin: 10px;
+        }
+
+        .l2 {
+            margin: 10px;
+        }
+
+        .l3 {
+            margin: 10px;
+        }
+
+        .l4 {
+            margin: 10px;
+        }
+        #uname{
+            color:white ;
+            position:absolute ;
+            top: 40px;
+            right: 25px;
+
+        }
+        #lgbtn{
+            background-color: rgb(33, 33, 127);
+    color: white;
+    font-family: 'Lexend', sans-serif;
+    font-size: 15=px;
+    font-weight: 400;
+    border-radius: 10px;
+    padding: 10px;
+    width: 120px;
+    padding-left: 10px;
+    margin-left: 25px;
+    margin-top: 5px;
+    position: relative;
+    right: 0px;  
+        }
+    </style>
+    <script>
+        function ulgout(){
+            document.getElementById("uname").innerHTML = "<button id='lgbtn'>Log Out</button>";
+        }
+        function unm(){
+            document.getElementById("uname").innerHTML = "<%=username%>";
+        }
+    </script>
+</head>
+
+<body>
+    <nav>
+        <span id="mainthala">Thala</span>
+        <ul>
+            <li><a href="index.ejs">Home</a></li>
+            <li><a href="#aboutcont">My COA</a></li>
+            <li><a href="#aboutcont">My Stocks</a></li>
+            <li><a href="#aboutcont">Stock History</a></li>
+            <div id="uname" onmouseover="ulgout()" onmouseout="unm()"><%=username %></div>
+        </ul>
+    </nav>
+    <div class="bo1">
+        <div id="hd">Channel Name</div>
+        <br>
+        <div id="sp1">Matric XXXX(profit/loss%)
+            <br><font size=".3px">(today's date)-close price</font><br>
+            <br>
+            <font face="Inter">(Channel Id)</font>
+        </div>
+        <button class="ubtn">Export To Excel</button>
+<br><br><br><br><br><br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        <span>Standalone Figures in Matic</span>
+        <br>
+        <table id="t1" cellpadding="10px" border="1">
+            <tr><td></td><td>8 Mar</td><td>9 Mar</td><td>10 Mar</td><td>Worst Case</td><td>Best Case</td></tr>
+            <tr><td>Sales</td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>Expenses</td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>Operating Profit</td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>Other Income</td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>Depreciation</td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>Interest</td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>Profit Before Tax</td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>Net Profit</td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>Price of Earning</td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>Price</td><td></td><td></td><td></td><td></td><td></td></tr>
+            
+        </table>
+        <br><br>
+        <div id="buy">
+            <div id="hd" class="hd1">Channel Id</div>
+            <div id="hd2"><p>Current Price per Token:  Matic XXXX</p></div>
+            <div id="hd3">Token Quantity: <input id="hd3a"type="number" name="tokenquantity" value="10"></div>
+            <div id="hd4">Equivalent Price: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span>XXXXX</span></div>
+            <div id="hdb"><button id="hdba">Buy</button></div>
+        </div>
+    </div>
+</body></html>
