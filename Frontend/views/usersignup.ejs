@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Khand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="usersignup.css"> 
-    <title>Sign Up</title>
+    <title>Sign Up |User</title>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -78,14 +78,12 @@
       <form id="userform" method="post" action="usersignin.ejs" onsubmit="return checkuserform()">
         <img id="midimg"src="Password.svg" alt="">
         <img id="psdimg"src="Group.svg" alt="">
-        <img id="cpdimg"src="Group.svg" alt="">
         <input class="inputplace" id="username" type="text" name="username" placeholder="     Username"/><br>
         <input class="inputplace" id="useremail" type="email" name="useremail" placeholder="     Email"/><br>
         <input class="inputplace" id="usernumber" type="text" name="usernumber" placeholder="     Phone Number"/><br>
         <input class="inputplace" id="userage" type="text" name="userage" placeholder="     Age"/><br>
         <input class="inputplace" id="usermetamaskid" type="text" name="usermetamaskid" placeholder="       Metamask ID" onkeypress="remmid()"/><br>
         <input class="inputplace" id="userpassword" type="password" name="userpassword" placeholder="       Password" onkeypress="rempsd()"/><br>
-        <input class="inputplace" id="userconfirmpassword" type="password" name="userconfirmpassword" placeholder="       Confirm Password" onkeypress="remcpd()"/><br>
         <input id="usersubmit" type="submit" value="Submit"/>
     </form>
     
