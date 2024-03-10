@@ -181,22 +181,30 @@ body{
     right: 0%;
     top:1166px;
 }
-
+#ubutton{
+    position: absolute;
+    left: 110px;
+    top: 350px;
+}
 #mdiv{
     font-size: large;
     font-weight: bolder;
     position: absolute;
-    left: 35px;
-    top: 420px;
+    left: 110px;
+    top: 250px;
 }
 #mcont{
     font-size: 50px;
+    padding-bottom: 10px;
 }
 #mbut{
     height: 60px;
     width: 300px;
     font-size: larger;
+    border-radius: 30px;
     color: orange;
     background-color: orange;
 }
-
+#mbut :hover{
+    box-shadow: none;
+}
