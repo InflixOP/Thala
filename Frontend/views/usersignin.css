@@ -1,0 +1,158 @@
+@keyframes fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+*{
+    text-decoration: none;
+}
+
+.nav{
+    height: 100px;
+    width: 100%;
+    background-color: #07091C;
+    border-radius: 50px;
+}
+body{
+    background: url(signback.jpg);
+    background-repeat: repeat-y;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
+#mainthala{
+    color: #E3C006;
+    font-weight: bold;
+    font-size: 40px;
+    padding:px;
+    padding-top:  px;
+    margin-left: 48px;
+    position: relative;
+    top: 20px;
+    font-family: 'Keania One';
+}
+#signback{
+    position: absolute;
+    top: 186px;
+    left: 274px;
+}
+#signuimg{
+    position: absolute;
+    top: 246px;
+    right: 334px;
+}
+#inputplace{
+    width: 15px;
+    height: 40px;
+    margin: 5px;
+
+}
+
+#userform{
+    position: absolute;
+    left: 334px;
+    top: 395px;
+}
+#usersubmit{
+    background-color: #22279B;
+    height: 37px;
+    width: 163px;
+    border-radius: 20px;
+    position: relative;
+    top: 20px;
+    left: 90px;
+    border: none;
+    font-family: Khand;
+    color: white;
+    letter-spacing: 1.5px;
+}
+#usersubmit:active{
+    height: 30px;
+    width: 150px;
+}
+.inputplace{
+    height:  35px;
+    width: 320;
+    border: none;
+    border-radius: 10px;
+    margin: 3px;
+}
+#signu{
+    color: rgb(60, 55, 55);
+    font-family: "Khand";
+    font-size: 23px;
+    position: absolute;
+    top: 290px;
+    left:337px;
+}
+#signuhead{
+    font-weight: 600;
+    font-family: "Khand";
+    font-size: 37;
+    position: absolute;
+    top: 220px;
+    left:337px;
+}
+#psdimg{
+    position: absolute;
+    top:58px;
+    left:11px;
+}
+#emlimg{
+    position: absolute;
+    top:15px;
+    left:10px;
+}
+.nav a{
+    color: aliceblue;
+    text-decoration: none;
+    font-size: 25;
+}
+#homepage{
+    position: absolute;
+    top: 40px;
+    right: 48px;
+}
+
+.nav a{
+    color: white;
+    margin-right: 30px;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 400;
+    position: relative;
+    right: 0px;   
+}
+
+.nav a:after{
+    content: "";
+    position: absolute;
+    background-color:#E3C006;
+    height: 3px;
+    width: 0;
+    left: 0;
+    bottom: -10px;
+    transition: 0.3s;
+}
+.nav a:hover{
+    color: rgb(193, 183, 183);
+}
+
+.nav a:hover:after{
+    width: 100%;
+}
