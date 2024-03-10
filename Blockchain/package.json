@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@openzeppelin/contracts": "^5.0.2",
     "@types/requirejs": "^2.1.34",
     "browserify": "^17.0.0",
     "dotenv": "^16.3.1",
@@ -12,8 +13,10 @@
   },
   "scripts": {
     "compile": "yarn solcjs --bin --abi --include-path node_modules/ --base-path . -o . user_signup.sol",
-    "compile1": "yarn solcjs --bin --abi --include-path node_modules/ --base-path . -o . Verification.sol",
-    "compile2": "yarn solcjs --bin --abi --include-path node_modules/ --base-path . -o . block.sol"
+    "compile1": "yarn solcjs --bin --abi --include-path node_modules/ --base-path . -o . creator_signup.sol",
+    "compile2": "yarn solcjs --bin --abi --include-path node_modules/ --base-path . -o . buy_token.sol",
+    "compile3": "yarn solcjs --bin --abi --include-path node_modules/ --base-path . -o . release_token.sol",
+    "compile4": "yarn solcjs --bin --abi --include-path node_modules/ --base-path . -o . coa.sol"
   },
   "name": "block",
   "version": "1.0.0",

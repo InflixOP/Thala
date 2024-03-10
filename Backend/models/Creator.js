@@ -4,75 +4,85 @@ const bcrypt = require('bcrypt')
 
 
 const creatorSchema = new mongoose.Schema({
-    username:{
+    creatorname: {
         type: String,
         required: [true,'Please enter a name']
     },
-    useremail:{
+    creatoremail:{
         type: String,
         required: [true, 'Please enter an email'],
         unique: true,
         lowercase : true,
         validate : [isEmail, 'Please enter a valid email']
     },
-    userplatformActive: {
+    creatorplatformActive: {
         type: String,
         enum: ['youtube', 'meta'],
         default: 'youtube',
     },
-    userchannelid:{
+    creatorchannelid:{
         type: String,
         required: [true,'Please enter your handle id'],
         unique: [true, 'This handle is already registered']
     },
-    userchannelname:{
+    creatorchannelname:{
         type: String,
         required: [true,'Please enter your channel name']
     },
-    usermetamaskid:{
+    creatormetamaskid:{
         type: String,
         required: [true, 'Please enter your metamaskid'],
         unique: [true, 'This wallet is already registered']
     },
-    userpassword: {
+    creatorpassword: {
         type: String,
         required: true,
         minlength: 8,
-        validate: {
-          validator: function (value) {
-            return value === this.confirmPassword;
-          },
-          message: 'Passwords do not match',
-        },
-      },
-    userconfirmPassword: {
-        type: String,
-        required: true
     },
+    todayViews:{
+        type: Number,
+        default: 0,
+      },
+    yesterdayViews: {
+        type: Number,
+        default: 0,
+      },
+    tokens: {
+        type: Number,
+        default: 0,
+    },
+    pricepertoken:{
+        type: Number,
+        default: 0,
+    },
+    adjustedPricePerToken:{
+        type: Number,
+        default: 0
+    }
 });
 
-creatorSchema.pre('save', async function(next){
+creatorSchema.pre('save', async function (next) {
     const salt = await bcrypt.genSalt();
-    this.password = await bcrypt.hash(this.password, salt);
+    this.creatorpassword = await bcrypt.hash(this.creatorpassword, salt);
     next();
-})
+});
 
-creatorSchema.post('save', function(doc, next) {
-    console.log('new user was created & saved', doc);
+creatorSchema.post('save', function (doc, next) {
+    console.log('New creator was created & saved', doc);
     next();
-})
+});
 
-creatorSchema.statics.login = async function(email, password){
-    const creator = await thisfindOne({email});
-    if(creator){
-       const auth = await bcrypt.compare(password, creator.password)
-       if(auth){
+creatorSchema.statics.creatorlogin = async function (creatoremail, creatorpassword) {
+    const creator = await this.findOne({ creatoremail });
+    if (creator) {
+        const auth = await bcrypt.compare(creatorpassword, creator.creatorpassword);
+        if (auth) {
             return creator;
-       }
-       throw Error('Incorrect Password')
+        }
+        throw Error('Incorrect Password');
     }
-    throw Error('Incorrect email')
-}
+    throw Error('Incorrect email');
+};
 
 const Creator = mongoose.model('Creator', creatorSchema)
 
