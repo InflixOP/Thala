@@ -1,5 +1,19 @@
 <html>
 <head>
+    <link href='https://fonts.googleapis.com/css?family=Keania One' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Rajdhani:wght@300&display=swap"rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kelly+Slab&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400;500;600&family=Inter:wght@500&family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Khand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="usersignup.css"> 
+    <title>Sign Up |Creator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script>
         function checkcreatorform() {
             var name = document.getElementById("creatorname");
@@ -48,8 +62,8 @@
 
         function instagramform() {
             var platform = document.getElementById("creatorplatform");
-            var channelinfo=document.getElementsByClassName("channelFields");
-            var instainfo=document.getElementsByClassName("instaFields");
+            var channelinfo=document.getElementById("creatorchannelid");
+            var instainfo=document.getElementById("creatorchannelname");
             if (platform.value == "instagram") {
                 for(x in channelinfo){
                     channelinfo[x].style.display="none";
@@ -66,29 +80,27 @@
     </script>
 </head>
 <body>
-    <table>
-        <form id="creatorform" method="post" action="" onsubmit="return checkcreatorform()">
-            <tr><td>Name:</td><td> <input id="creatorname" type="text" name="creatorname"/></td></tr>
-            <tr><td>Email:</td><td><input id="creatoremail" type="email" name="creatoremail"/></td></tr>
-            <tr><td>Platform:</td><td><select id="creatorplatform" name="creatorplatform" onchange="instagramform()">
-                <option value="youtube">YouTube</option>
-                <option value="instagram" >Instagram</option>
-            </select></td></tr>
-            <tr><td><div class="channelFields">Channel ID:</div></td><td><div class="channelFields"><input id="creatorchannelid" type="text" name="creatorchannelid"/></div></td></tr>
-            <tr><td><div class="channelFields">Channel Name:</div></td><td><div class="channelFields"><input id="creatorchannelname" type="text" name="creatorchannelname"/></div></td></tr>
-        </div>
-            
-            
-                <tr><td><div class="instaFields" style="display:none;">Insta ID:</div></td><td><div class="instaFields" style="display: none;"><input id="creatorinstaid" type="text" name="creatorinstaid"/></div></td></tr>
-                <tr><td><div class="instaFields" style="display: none;">Insta Name:</div></td><td><div class="instaFields" style="display: none;"><input id="creatorinstaname" type="text" name="creatorinstaname"/></div></td></tr>
-            </div>
-            <tr><td>Metamask_id:</td><td><input id="creatormetamaskid" type="text" name="creatormetamaskid"/></td></tr>
-            <tr><td>Password:</td><td><input id="creatorpassword" type="password" name="creatorpassword"/></td></tr>
-            <tr><td>Confirm Password:</td><td><input id="creatorconfirmpassword" type="password" name="creatorconfirmpassword"/></td></tr>
-            <tr><td colspan="2"><input class="creatorsubmit" type="submit" value="Sign Up"/>
-                <input class="creatorcancel" type="reset" value="Cancel"/></td></tr>         
-        </form>
-    </table>
+    <div class="nav"><span id="mainthala">Thala</span>
+        <span id="homepage"><a href="index.ejs" >Home</a></span>
+      </div>
+      <img id="signback" src="Rectangle 19.svg" alt="not found">
+      <img id="signuimg" src="Social media, Delivery, Business _ fast, speed, account, graph, success, happy.svg" alt="">
+      <p id="signuhead">Signup as a Creator</p>
+      <form id="userform" method="post" action="usersignin.ejs" onsubmit="return checkcreatorform()">
+        <img id="midimg"src="Password.svg" alt="">
+        <img id="psdimg"src="Group.svg" alt="">
+        <input class="inputplace" id="creatorname" type="text" name="creatorname" placeholder="     Name"/><br>
+        <input class="inputplace" id="creatoremail" type="email" name="creatoremail" placeholder="     Email"/><br>
+        
+            <input class="inputplace" id="creatorchannelid" type="text" name="creatorchannelid " placeholder="     Channel ID"/>
+            <br>
+            <input class="inputplace" id="creatorchannelname" type="text" name="creatorchannelname"placeholder="     Channel Name"/><br>
+        <input class="inputplace" id="creatormetamaskid" type="text" name="creatormetamaskid" placeholder="       Metamask ID" onkeypress="remmid()"/><br>
+        <input class="inputplace" id="creatorrpasword" type="password" name="creatorpassword" placeholder="        Password"/><br>
+        <input id="usersubmit" type="submit" value="Submit"/>
+    </form>
     
 </body>
 </html>
+
+
